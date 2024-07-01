@@ -1,0 +1,29 @@
+name: fastapi-crud
+
+services:
+  api:
+    image: nkzubrilov/fastapi-crud
+    ports:
+      - 8000:8000
+    environment:
+      - DB_HOSTNAME=${DB_HOSTNAME}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALGORITHM=${ALGORITHM}
+      - TOKEN_EXPIRE_MINUTES=${TOKEN_EXPIRE_MINUTES}
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - fastapi-crud-db:/var/lib/postgresql/data
+
+volumes:
+  fastapi-crud-db:
