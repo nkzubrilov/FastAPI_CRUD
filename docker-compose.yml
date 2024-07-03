@@ -2,11 +2,11 @@ name: fastapi-crud
 
 services:
   api:
-    image: nkzubrilov/fastapi-crud
+    image: nkzubrilov/fastapi-crud:latest
     ports:
       - 8000:8000
     environment:
-      - DB_HOSTNAME=${DB_HOSTNAME}
+      - DB_HOSTNAME=postgres
       - DB_PORT=${DB_PORT}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
