@@ -81,5 +81,5 @@ jobs:
           key: ${{secrets.SERVER_SSH_KEY}}
           script: |
             sudo systemctl stop crud-api.service
-            sudo docker compose pull
+            sudo -u fastapi bash -c "cd /home/fastapi/app/src && docker compose pull"
             sudo systemctl start crud-api.service
