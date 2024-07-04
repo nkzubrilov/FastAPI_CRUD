@@ -80,6 +80,5 @@ jobs:
           username: ${{secrets.SERVER_USER}}
           key: ${{secrets.SERVER_SSH_KEY}}
           script: |
-            sudo systemctl stop crud-api.service
-            sudo -u fastapi bash -c "cd /home/fastapi/app/src && docker compose pull"
-            sudo systemctl start crud-api.service
+            sudo -u fastapi bash -c "cd /home/fastapi/app/src && docker compose --env-file /home/fastapi/env.env pull"
+            sudo systemctl restart crud-api.service
